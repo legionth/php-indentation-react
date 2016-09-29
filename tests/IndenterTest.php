@@ -1,14 +1,14 @@
 <?php
 
 use React\Stream\ReadableStream;
-use Legionth\React\Indentation\IndentationParser;
+use Legionth\React\Indentation\Indenter;
 
-class IndentationParserTest extends TestCase
+class IndenterTest extends TestCase
 {
     public function setUp()
     {
         $this->input = new ReadableStream();
-        $this->parser = new IndentationParser($this->input);
+        $this->parser = new Indenter($this->input);
     }
     
     public function testMethodIsCalled()
@@ -56,7 +56,7 @@ class IndentationParserTest extends TestCase
         $input = $this->getMock('React\Stream\ReadableStreamInterface');
         $input->expects($this->once())->method('pause');
         
-        $parser = new IndentationParser($input);
+        $parser = new Indenter($input);
         $parser->pause();
     }
     
@@ -65,7 +65,7 @@ class IndentationParserTest extends TestCase
         $input = $this->getMock('React\Stream\ReadableStreamInterface');
         $input->expects($this->once())->method('pause');
         
-        $parser = new IndentationParser($input);
+        $parser = new Indenter($input);
         $parser->pause();
         $parser->resume();
     }

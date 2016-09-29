@@ -10,7 +10,7 @@ use React\Stream\Util;
 /**
  *  This class indents the input by 4 spaces and writes it into a stream
  */
-class IndentationParser extends EventEmitter implements ReadableStreamInterface
+class Indenter extends EventEmitter implements ReadableStreamInterface
 {
     private $closed = false;
     private $started = true;
@@ -40,7 +40,6 @@ class IndentationParser extends EventEmitter implements ReadableStreamInterface
         
         $data = str_replace(PHP_EOL, PHP_EOL . '    ', $data);
         $this->emit('data', array($data));
-        
     }
     
     /** @internal */
