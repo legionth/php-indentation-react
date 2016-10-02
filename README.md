@@ -2,37 +2,24 @@
 
 Indenter to indent the lines of an incoming stream, on top of reactPHP
 
+This project should show how awesome [streams](https://github.com/reactphp/stream) are and why they should be used. This project use a combination of writable and readable streams. Checkout the [Usage](#usage) for more information.
+
 **Table of Contents**
-* [Explanation](#explanation)
 * [Usage](#usage)
  * [Indenter](#indenter)
 * [License](#license)
-
-## Explanation
-
-This project is build on top of reactPHP.
-
-Essentially for this project are the [streams](https://github.com/reactphp/stream) of ReactPHP. These streams are seperated into Writeable and Readable streams so we can receive the data from a writable stream and put them into an output stream.
 
 ## Usage
 
 ### Indenter
 
-The `Indenter` class makes sure that every entered stream will be indented and will be written into an output stream. The `Indenter` is an `EventEmitter` and a `ReadableStreamInterface`.
+The center of this project is the `Indenter` class. This class (obviously) indents the incomig stream into an outgoing stream. The `Indenter` is an `EventEmitter` and a `ReadableStreamInterface`. Because this class is a `ReadableStreamInterface` the indented data will be exposed on the same interface.
 
-```php
-$input = new Stream(STDIN, $loop);
+To use this data you have to pipe it into another stream, checkout the `examples` folder.
 
-$stream = new Indenter($input);
-
-$stream->on('data', function ($data) {
-    var_dump($data);
-});
-```
-The input of this stream will be indented and will be exposed on the same interface.
-
-React streams can be seperated into small or bigger chunks depending on the incoming data. Because of this a new stream will be indented and only new lines with a new line delimiter will be indented too. So you can be sure that a running stream is not accidentally falsly indetented independently of how big your stream is.
-
+So what is the reason for this project? This project just shows how awesome the ReactPHP streams are. Streams can come in different sizes: bigger parts, smaller parts, etc. depending on your data source(Downloads, Files, Strings ...). 
+In this project you can be sure a chunk is complete when the new line delimiter comes in, so the next line will be indented. So you can be sure the stream is always correctly indented.
+ 
 You can find under `examples` how you can use this project.
 If you need a file to be indented you can pipe the file into the example.
 
@@ -45,9 +32,7 @@ This command can be started on its own.
 $ php examples/indentInput.php
 ```
 
-Note: The intention of this project may be unclear if you use the example on its own. Because you have a input stream and to send the typed data to this stream you have to hit the enter button, which is not a linebreak. Only your first entered stream will be indented, the rest will be considered to be related to the first entered string.
-
-To see the `Indenter` work you should pipe a file or a command input into the example.
+The first example makes clear why this project should be used. You can indent a whole file with one little example. If you want, you can pipe a command output into this example to see how it works. Just try it.
 
 ## Install
 
