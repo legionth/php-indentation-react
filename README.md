@@ -1,7 +1,5 @@
 # legionth/indentation-react
 
-Indenter to indent the lines of an incoming stream, on top of reactPHP
-
 This project should show how awesome [streams](https://github.com/reactphp/stream) are and why they should be used. This project use a combination of writable and readable streams. Checkout the [Usage](#usage) for more information.
 
 **Table of Contents**
