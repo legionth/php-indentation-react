@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1 (2016-10-04)
+
+* Fixed README
+
 ## 0.2.0 (2016-10-04)
 
 * Updated README
