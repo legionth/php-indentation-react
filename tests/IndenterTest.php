@@ -79,6 +79,15 @@ class IndenterTest extends TestCase
         $this->assertSame($dest, $ret);
     }
     
+    public function testAnotherIndentionParameter()
+    {
+    	$indenter = new Indenter($this->input , '  ');
+    	
+    	$indenter->on('data', $this->expectCallableOnceWith('  hello'));
+    	 
+    	$this->input->emit('data', array('hello'));
+    }
+    
     private function expectCallableConsecutive($numberOfCalls, array $with)
     {
         $mock = $this->createCallableMock();
