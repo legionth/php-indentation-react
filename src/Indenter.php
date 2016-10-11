@@ -14,9 +14,14 @@ class Indenter extends EventEmitter implements ReadableStreamInterface
 {
     private $closed = false;
     private $started = true;
+    private $beginningString;
     
     
-    public function __construct(ReadableStreamInterface $input)
+    /**
+     * @param ReadableStreamInterface $input - Incoming stream
+     * @param string $beginningString - characters 
+     */
+    public function __construct(ReadableStreamInterface $input, $beginningString = '    ')
     {
         $this->input = $input;
     
@@ -24,6 +29,8 @@ class Indenter extends EventEmitter implements ReadableStreamInterface
         $this->input->on('end', array($this, 'handleEnd'));
         $this->input->on('error', array($this, 'handleError'));
         $this->input->on('close', array($this, 'close'));
+
+        $this->beginningString = $beginningString;
     }
     
     /**
@@ -34,11 +41,11 @@ class Indenter extends EventEmitter implements ReadableStreamInterface
     public function handleData($data)
     {
         if ($this->started) {
-            $data = '    ' . $data;
+            $data = $this->beginningString . $data;
             $this->started = false;
         }
         
-        $data = str_replace(PHP_EOL, PHP_EOL . '    ', $data);
+        $data = str_replace(PHP_EOL, PHP_EOL . $this->beginningString, $data);
         $this->emit('data', array($data));
     }
     
