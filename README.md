@@ -5,6 +5,7 @@ This project should show how awesome [streams](https://github.com/reactphp/strea
 **Table of Contents**
 * [Usage](#usage)
  * [Indenter](#indenter)
+* [Install](#install)
 * [License](#license)
 
 ## Usage
@@ -30,7 +31,31 @@ This command can be started on its own.
 $ php examples/indentInput.php
 ```
 
-The first example makes clear why this project should be used. You can indent a whole file with one little example. If you want, you can pipe a command output into this example to see how it works. Just try it.
+This example makes clear why this project should be used. You can indent a whole file with one little example. If you want, you can pipe a command output into this example to see how it works. Just try it.
+
+You can use other indentation methods as the standard 4 spaces e.g. (Tabs, more or fewer spaces) by using it like this
+
+```
+$ cat words.txt | php examples/indentInput.php --tab 
+
+```
+
+or just add two spaces instead of four:
+
+```
+$ cat words.txt | php examples/indentInput.php --spaces 2
+
+```
+
+Use it in your production code like this;
+
+```php
+$indenter = new Indenter($inputStream);
+// or
+$indenter = new Indenter($inputStream, $beginningString);
+```
+
+The `$beginningString` can be any kind of string. Whatever you prefer ;)
 
 ## Install
 
